@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gestao-queroser"
+version = "1.0.0"
+description = "Sistema de gestão para ONGs que oferecem oficinas educacionais e musicais"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Instituto Quero Ser", email = "contato@institutoqueroser.org"}
+]
+keywords = [
+    "django",
+    "ong",
+    "gestão",
+    "educação",
+    "oficinas"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: Django :: 6.0",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Education",
+]
+
+dependencies = [
+    "Django==6.0.1",
+    "psycopg2-binary==2.9.9",
+    "python-dotenv==1.0.0",
+    "gunicorn==21.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==7.4.0",
+    "pytest-django==4.5.2",
+    "black==23.9.1",
+    "flake8==6.1.0",
+    "isort==5.12.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/seu-usuario/gestao_queroser"
+Documentation = "https://github.com/seu-usuario/gestao_queroser#readme"
+Repository = "https://github.com/seu-usuario/gestao_queroser.git"
+Issues = "https://github.com/seu-usuario/gestao_queroser/issues"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "core.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
