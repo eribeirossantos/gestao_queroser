@@ -122,36 +122,80 @@ gestao_queroser/
 └── README.md              # Este arquivo
 ```
 
+## � Deploy Online (Custo Zero)
+
+O Sistema Quero Ser foi especialmente configurado para rodar em hospedagem **totalmente gratuita ou de custo mínimo**.
+
+### Hospedagens Recomendadas
+
+| Plataforma         | Custo     | Facilidade | Banco de Dados    |
+| ------------------ | --------- | ---------- | ----------------- |
+| **Render**         | R$0/mês   | ⭐⭐⭐⭐⭐ | PostgreSQL grátis |
+| **PythonAnywhere** | R$0/mês   | ⭐⭐⭐⭐⭐ | SQLite (incluso)  |
+| **Railway**        | R$0/mês\* | ⭐⭐⭐⭐   | PostgreSQL grátis |
+
+\*Railway oferece $5/mês em créditos gratuitos
+
+### Deploy Rápido
+
+👉 **Veja o guia completo em [DEPLOYMENT_GRATUITO.md](DEPLOYMENT_GRATUITO.md)**
+
+**Resumo rápido:**
+
+1. Clone o repositório
+2. Faça push para GitHub
+3. Conecte sua conta Render/Railway/PythonAnywhere ao GitHub
+4. Configure variáveis de ambiente (SECRET_KEY, DEBUG, ALLOWED_HOSTS)
+5. Deploy automático! ✅
+
+Não há custos de banco de dados, servidor ou domínio.
+
+---
+
 ## 🔧 Configuração para Produção
 
 ### Segurança
 
-1. **Mude a SECRET_KEY**:
+1. **Gere uma nova SECRET_KEY**:
 
-   ```python
-   # Gere uma nova chave
+   ```bash
    python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"
    ```
 
-2. **Configure o DEBUG**:
+2. **Configure para produção**:
 
-   ```
+   ```bash
+   # Copie o arquivo de exemplo
+   cp .env.example .env
+
+   # Edite .env com suas configurações
    DEBUG=False
-   ```
-
-3. **Configure ALLOWED_HOSTS**:
-
-   ```
+   SECRET_KEY=<sua-chave-gerada>
    ALLOWED_HOSTS=seu-dominio.com,www.seu-dominio.com
    ```
 
-4. **Use HTTPS** e configure CSRF
+3. **Teste localmente**:
 
-### Deployment com Gunicorn
+   ```bash
+   python manage.py runserver
+   ```
 
-```bash
-gunicorn core.wsgi:application --bind 0.0.0.0:8000
-```
+4. **Colete arquivos estáticos** (obrigatório para produção):
+
+   ```bash
+   python manage.py collectstatic --noinput
+   ```
+
+### Deployment Automático
+
+A aplicação está pré-configurada com:
+
+- ✅ WhiteNoise (servir CSS/JS sem servidor externo)
+- ✅ Gunicorn (servidor web de produção)
+- ✅ Suporte a SQLite e PostgreSQL
+- ✅ Procfile para Render/Railway/Heroku
+
+Simplesmente faça push para GitHub e o deploy acontece automaticamente!
 
 ## 📊 Modelos de Dados
 
