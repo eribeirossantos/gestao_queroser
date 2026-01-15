@@ -15,57 +15,61 @@ O Sistema de Gestão Quero Ser foi desenvolvido com foco em **minimizar custos d
 
 ### **Opção 1: 100% Gratuito (Atual)**
 
-| Componente | Plano | Custo | Observações |
-|-----------|-------|-------|------------|
-| **Hospedagem** | Render Free | R$0 | Spin down após 15min inatividade |
-| **Banco de Dados** | Railway Free | R$0 | Limite $5/mês em uso |
-| **Total Mensal** | - | **R$0** | ⚠️ Performance comprometida |
+| Componente         | Plano        | Custo   | Observações                      |
+| ------------------ | ------------ | ------- | -------------------------------- |
+| **Hospedagem**     | Render Free  | R$0     | Spin down após 15min inatividade |
+| **Banco de Dados** | Railway Free | R$0     | Limite $5/mês em uso             |
+| **Total Mensal**   | -            | **R$0** | ⚠️ Performance comprometida      |
 
 **Problemas:**
+
 - ❌ Atraso de 50+ segundos ao acessar após inatividade
 - ❌ Experiência ruim para usuários
 - ⚠️ Limite Railway pode ser ultrapassado com crescimento
 
 ---
 
-### **Opção 2: Render Pro + Railway (RECOMENDADO)**
+### **Opção 2: Render Starter + Railway Hobby (RECOMENDADO)**
 
-| Componente | Plano | Custo (USD) | Custo (R$)* | Observações |
-|-----------|-------|------------|------------|------------|
-| **Hospedagem** | Render Pro | $7/mês | ~R$35 | Performance + sem spin down |
-| **Banco de Dados** | Railway Standard | $10/mês | ~R$50 | PostgreSQL dedicado, 50GB |
-| **Total Mensal** | - | **$17/mês** | **~R$85/mês** | ✅ Produção recomendada |
+| Componente         | Plano            | Custo (USD) | Custo (R$)\*  | Observações                 |
+| ------------------ | ---------------- | ----------- | ------------- | --------------------------- |
+| **Hospedagem**     | Render Starter   | $7/mês      | ~R$35         | Performance + sem spin down |
+| **Banco de Dados** | Railway Hobby    | $5/mês      | ~R$25         | PostgreSQL dedicado         |
+| **Total Mensal**   | -                | **$12/mês** | **~R$60/mês** | ✅ Produção recomendada     |
 
 **Benefícios:**
-- ✅ Sem spin down
+
+- ✅ Sem spin down (Zero Downtime)
 - ✅ Performance rápida (< 1 segundo)
 - ✅ Banco de dados dedicado
 - ✅ Melhor experiência do usuário
+- ✅ SSH Access e escalabilidade
 - ✅ Suporte prioritário
 
 ---
 
-### **Opção 3: Apenas Render Pro (Moderada)**
+### **Opção 3: Apenas Render Starter (Moderada)**
 
-| Componente | Plano | Custo (USD) | Custo (R$)* | Observações |
-|-----------|-------|------------|------------|------------|
-| **Hospedagem** | Render Pro | $7/mês | ~R$35 | Performance + sem spin down |
-| **Banco de Dados** | Railway Free* | $0 | ~R$0 | Mantém limite $5 com risco |
-| **Total Mensal** | - | **$7/mês** | **~R$35/mês** | ⚠️ Risco de limite ultrapassado |
+| Componente         | Plano          | Custo (USD) | Custo (R$)\*  | Observações                     |
+| ------------------ | -------------- | ----------- | ------------- | ------------------------------- |
+| **Hospedagem**     | Render Starter | $7/mês      | ~R$35         | Performance + sem spin down     |
+| **Banco de Dados** | Railway Free\* | $0          | ~R$0          | Mantém limite $5 com risco      |
+| **Total Mensal**   | -              | **$7/mês**  | **~R$35/mês** | ⚠️ Risco de limite ultrapassado |
 
 **Nota**: Railway Free pode gerar custos extras se usar mais que $5.
 
 ---
 
-### **Opção 4: Render Standard + Railway (Premium)**
+### **Opção 4: Render Standard + Railway Pro (Premium)**
 
-| Componente | Plano | Custo (USD) | Custo (R$)* | Observações |
-|-----------|-------|------------|------------|------------|
-| **Hospedagem** | Render Standard | $12/mês | ~R$60 | Máxima performance e confiabilidade |
-| **Banco de Dados** | Railway Standard | $10/mês | ~R$50 | PostgreSQL dedicado, 100GB |
-| **Total Mensal** | - | **$22/mês** | **~R$110/mês** | ✅ Produção robusta |
+| Componente         | Plano           | Custo (USD) | Custo (R$)\*   | Observações                         |
+| ------------------ | --------------- | ----------- | -------------- | ----------------------------------- |
+| **Hospedagem**     | Render Standard | $25/mês     | ~R$125         | Máxima performance e confiabilidade |
+| **Banco de Dados** | Railway Pro     | $20/mês     | ~R$100         | PostgreSQL dedicado, 32GB RAM       |
+| **Total Mensal**   | -               | **$45/mês** | **~R$225/mês** | ✅ Produção robusta                 |
 
-**Benefícios**: 
+**Benefícios**:
+
 - ✅ Performance máxima
 - ✅ Sem restrições
 - ✅ Escalabilidade garantida
@@ -80,8 +84,9 @@ O Sistema de Gestão Quero Ser foi desenvolvido com foco em **minimizar custos d
 
 ### **Cenário A: ONG com Poucos Usuários (< 50 usuários)**
 
-**Recomendação**: Opção 2 (Render Pro + Railway Standard)
-- **Custo**: ~R$85/mês = ~R$1.020/ano
+**Recomendação**: Opção 2 (Render Starter + Railway Hobby)
+
+- **Custo**: ~R$60/mês = ~R$720/ano
 - **ROI**: Investimento mínimo com produção profissional
 - **Crescimento**: Pronto para escalar sem mudanças
 
@@ -89,8 +94,9 @@ O Sistema de Gestão Quero Ser foi desenvolvido com foco em **minimizar custos d
 
 ### **Cenário B: ONG com Muitos Usuários (> 100 usuários)**
 
-**Recomendação**: Opção 4 (Render Standard + Railway Standard)
-- **Custo**: ~R$110/mês = ~R$1.320/ano
+**Recomendação**: Opção 4 (Render Standard + Railway Pro)
+
+- **Custo**: ~R$225/mês = ~R$2.700/ano
 - **ROI**: Garante performance mesmo com picos de uso
 - **Confiabilidade**: 99.9% uptime
 
@@ -99,6 +105,7 @@ O Sistema de Gestão Quero Ser foi desenvolvido com foco em **minimizar custos d
 ### **Cenário C: ONG com Restrição Orçamentária**
 
 **Recomendação**: Opção 1 (100% Gratuito)
+
 - **Custo**: R$0
 - **Trade-off**: Aceitar spin down e possível lentidão
 - **Alternativa**: Revisar em 6 meses quando situação financeira melhorar
@@ -107,54 +114,60 @@ O Sistema de Gestão Quero Ser foi desenvolvido com foco em **minimizar custos d
 
 ## 📊 Projeção Anual de Custos
 
-| Opção | Mensal | Anual |
-|-------|--------|-------|
-| Opção 1 (Gratuito) | R$0 | R$0 |
-| Opção 2 (Pro + Standard) | R$85 | R$1.020 |
-| Opção 3 (Pro) | R$35 | R$420 |
-| Opção 4 (Premium) | R$110 | R$1.320 |
+| Opção                    | Mensal | Anual   |
+| ------------------------ | ------ | ------- |
+| Opção 1 (Gratuito)       | R$0    | R$0     |
+| Opção 2 (Pro + Standard) | R$85   | R$1.020 |
+| Opção 3 (Pro)            | R$35   | R$420   |
+| Opção 4 (Premium)        | R$110  | R$1.320 |
 
 ---
 
 ## ⚖️ Análise de Risco
 
 ### **Opção 1 (Gratuito)**
+
 - **Risco Alto**: Spin down afeta experiência
 - **Risco Médio**: Railway pode cobrar extras
 - **Recomendação**: Apenas para MVP/testes
 
-### **Opção 2 (Pro + Standard)**
+### **Opção 2 (Starter + Hobby)**
+
 - **Risco Baixo**: Infraestrutura confiável
-- **Custo Previsível**: R$85 fixos/mês
+- **Custo Previsível**: R$60 fixos/mês
 - **Recomendação**: ✅ MELHOR OPÇÃO
 
-### **Opção 3 (Pro)**
+### **Opção 3 (Starter)**
+
 - **Risco Médio**: Ainda tem limite Railway
 - **Custo Variável**: Pode exceder R$35
 - **Recomendação**: ⚠️ Considerar Opção 2
 
 ### **Opção 4 (Premium)**
+
 - **Risco Muito Baixo**: Infraestrutura robusta
-- **Custo Previsível**: R$110 fixos/mês
+- **Custo Previsível**: R$225 fixos/mês
 - **Recomendação**: ✅ Para crescimento futuro
 
 ---
 
 ## 🎯 Recomendação Final
 
-### **Para começar: Opção 2 (Render Pro + Railway Standard)**
+### **Para começar: Opção 2 (Render Starter + Railway Hobby)**
 
 **Por quê?**
+
 1. ✅ Melhor custo-benefício
-2. ✅ Performance profissional (~R$85/mês)
+2. ✅ Performance profissional (~R$60/mês)
 3. ✅ Pronto para produção
 4. ✅ Sem spin downs
 5. ✅ Suporta crescimento moderado
 
 **Comparação com alternativas:**
-- **vs. Opção 1**: +R$85/mês para eliminar spin downs
-- **vs. Opção 3**: +R$50/mês para ter banco dedicado
-- **vs. Opção 4**: -R$25/mês mantendo boa performance
+
+- **vs. Opção 1**: +R$60/mês para eliminar spin downs
+- **vs. Opção 3**: +R$25/mês para ter banco dedicado
+- **vs. Opção 4**: -R$165/mês mantendo boa performance
 
 ---
 
@@ -173,11 +186,12 @@ O Sistema de Gestão Quero Ser foi desenvolvido com foco em **minimizar custos d
 
 1. ✅ Fazer upgrade Render Pro ($7/mês)
    - Dashboard Render → Settings → Upgrade Plan
-   
 2. ✅ Atualizar Railway para Standard ($10/mês)
+
    - Dashboard Railway → Settings → Upgrade
 
 3. ✅ Monitorar custos mensais
+
    - Render: www.render.com/billing
    - Railway: railway.app/billing
 
@@ -201,6 +215,6 @@ O Sistema de Gestão Quero Ser foi desenvolvido com foco em **minimizar custos d
 
 ## Assinatura dos Responsáveis
 
-Nome: _________________________ Data: _________
+Nome: ************\_************ Data: ****\_****
 
 Aprovação: ☐ Sim ☐ Não ☐ Para revisar
