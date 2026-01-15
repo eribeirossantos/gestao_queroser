@@ -8,6 +8,9 @@ class Aluno(models.Model):
     telefone = models.CharField(max_length=20, verbose_name="Telefone/WhatsApp")
     endereco = models.TextField(blank=True, null=True, verbose_name="Endereço")
     
+    # Foto do aluno
+    foto = models.ImageField(upload_to='alunos/fotos/', blank=True, null=True, verbose_name="Foto")
+    
     # Campos importantes para ONGs
     escola_publica = models.BooleanField(default=True, verbose_name="Estuda em Escola Pública?")
     observacoes = models.TextField(blank=True, null=True, verbose_name="Observações (Saúde/Social)")

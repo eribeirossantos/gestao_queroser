@@ -1,11 +1,56 @@
 from django.contrib import admin
+from django import forms
+from django.utils.html import format_html
 from .models import Aluno, Turma, Aula
+from .widgets import CameraWidget, CAMERA_JS
+
+class AlunoForm(forms.ModelForm):
+    class Meta:
+        model = Aluno
+        fields = '__all__'
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Usar o widget de câmera para o campo de foto
+        self.fields['foto'].widget = CameraWidget()
 
 @admin.register(Aluno)
 class AlunoAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'telefone', 'ativo') # O que aparece na lista
-    search_fields = ('nome', 'cpf_responsavel')   # Barra de busca
-    list_filter = ('ativo', 'escola_publica')     # Filtros laterais
+    form = AlunoForm
+    list_display = ('nome', 'telefone', 'foto_thumbnail', 'ativo')
+    search_fields = ('nome', 'cpf_responsavel')
+    list_filter = ('ativo', 'escola_publica')
+    fieldsets = (
+        ('Informações Pessoais', {
+            'fields': ('nome', 'data_nascimento', 'foto')
+        }),
+        ('Contato', {
+            'fields': ('telefone', 'cpf_responsavel', 'endereco')
+        }),
+        ('Situação', {
+            'fields': ('escola_publica', 'ativo', 'observacoes')
+        }),
+    )
+    
+    def foto_thumbnail(self, obj):
+        """Mostrar miniatura da foto na lista"""
+        if obj.foto:
+            return format_html(
+                '<img src="{}" width="50" height="50" style="border-radius: 4px;" />',
+                obj.foto.url
+            )
+        return '-'
+    foto_thumbnail.short_description = 'Foto'
+    
+    def change_form(self, request, object_id=None, form_url='', extra_context=None):
+        """Adicionar JavaScript do widget de câmera"""
+        if extra_context is None:
+            extra_context = {}
+        extra_context['extra_js'] = [CAMERA_JS]
+        return super().change_form(request, object_id, form_url, extra_context)
+    
+    class Media:
+        js = ('admin/js/admin_camera.js',)
 
 @admin.register(Turma)
 class TurmaAdmin(admin.ModelAdmin):
