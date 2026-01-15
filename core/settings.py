@@ -83,9 +83,10 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database configuration - supports both SQLite (free) and PostgreSQL
 # For zero-cost hosting, SQLite is recommended
+import dj_database_url
+
 if os.getenv('DATABASE_URL'):
     # Use PostgreSQL if DATABASE_URL is provided (Railway, Render, etc.)
-    import dj_database_url
     DATABASES = {
         'default': dj_database_url.config(default=os.getenv('DATABASE_URL'), conn_max_age=600)
     }
