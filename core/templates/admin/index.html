@@ -1,0 +1,240 @@
+{% extends "admin/index.html" %}
+{% load static %}
+
+{% block extrahead %}
+{{ block.super }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+    .dashboard-container {
+        margin: 20px 0;
+    }
+    .dashboard-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .dashboard-card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .dashboard-card h3 {
+        margin-top: 0;
+        color: #417690;
+        border-bottom: 2px solid #417690;
+        padding-bottom: 10px;
+    }
+    .chart-container {
+        position: relative;
+        height: 300px;
+        margin-top: 15px;
+    }
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    .stat-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .stat-card h4 {
+        margin: 0 0 10px 0;
+        font-size: 14px;
+        opacity: 0.9;
+        font-weight: normal;
+    }
+    .stat-card .number {
+        font-size: 32px;
+        font-weight: bold;
+        margin: 0;
+    }
+    .stat-card:nth-child(2) {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    .stat-card:nth-child(3) {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+    .stat-card:nth-child(4) {
+        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+{{ block.super }}
+
+<div class="dashboard-container">
+    <h2 style="color: #417690; margin-bottom: 20px;">📊 Dashboard Gerencial</h2>
+    
+    <!-- Cards de Estatísticas Rápidas -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h4>Total de Alunos</h4>
+            <p class="number">{{ stats.total_alunos }}</p>
+        </div>
+        <div class="stat-card">
+            <h4>Alunos Ativos</h4>
+            <p class="number">{{ stats.alunos_ativos }}</p>
+        </div>
+        <div class="stat-card">
+            <h4>Turmas Ativas</h4>
+            <p class="number">{{ stats.total_turmas }}</p>
+        </div>
+        <div class="stat-card">
+            <h4>Total Doadores</h4>
+            <p class="number">{{ stats.total_doadores }}</p>
+        </div>
+    </div>
+
+    <!-- Linha 1: Alunos e Frequência -->
+    <div class="dashboard-row">
+        <div class="dashboard-card">
+            <h3>👥 Alunos: Ativos vs Inativos</h3>
+            <div class="chart-container">
+                <canvas id="alunosChart"></canvas>
+            </div>
+        </div>
+        
+        <div class="dashboard-card">
+            <h3>📅 Frequência Média por Turma</h3>
+            <div class="chart-container">
+                <canvas id="frequenciaChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Linha 2: Arrecadação -->
+    <div class="dashboard-row">
+        <div class="dashboard-card" style="grid-column: span 2;">
+            <h3>💰 Arrecadação nos Últimos 6 Meses</h3>
+            <div class="chart-container">
+                <canvas id="arrecadacaoChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Gráfico de Alunos Ativos vs Inativos
+const ctxAlunos = document.getElementById('alunosChart').getContext('2d');
+new Chart(ctxAlunos, {
+    type: 'doughnut',
+    data: {
+        labels: ['Ativos', 'Inativos'],
+        datasets: [{
+            data: [{{ stats.alunos_ativos }}, {{ stats.alunos_inativos }}],
+            backgroundColor: [
+                'rgba(75, 192, 192, 0.8)',
+                'rgba(255, 99, 132, 0.8)'
+            ],
+            borderColor: [
+                'rgba(75, 192, 192, 1)',
+                'rgba(255, 99, 132, 1)'
+            ],
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: false
+            }
+        }
+    }
+});
+
+// Gráfico de Frequência por Turma
+const ctxFrequencia = document.getElementById('frequenciaChart').getContext('2d');
+new Chart(ctxFrequencia, {
+    type: 'bar',
+    data: {
+        labels: {{ frequencia.turmas|safe }},
+        datasets: [{
+            label: 'Frequência Média (%)',
+            data: {{ frequencia.percentuais|safe }},
+            backgroundColor: 'rgba(54, 162, 235, 0.8)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                max: 100,
+                ticks: {
+                    callback: function(value) {
+                        return value + '%';
+                    }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            }
+        }
+    }
+});
+
+// Gráfico de Arrecadação
+const ctxArrecadacao = document.getElementById('arrecadacaoChart').getContext('2d');
+new Chart(ctxArrecadacao, {
+    type: 'line',
+    data: {
+        labels: {{ arrecadacao.meses|safe }},
+        datasets: [{
+            label: 'Arrecadação (R$)',
+            data: {{ arrecadacao.valores|safe }},
+            fill: true,
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 3,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            y: {
+                beginAtZero: true,
+                ticks: {
+                    callback: function(value) {
+                        return 'R$ ' + value.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+                    }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        return 'R$ ' + context.parsed.y.toLocaleString('pt-BR', {minimumFractionDigits: 2});
+                    }
+                }
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

@@ -20,6 +20,9 @@ from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
 
+# Importar admin customizado
+import core.admin
+
 urlpatterns = [
     path('', RedirectView.as_view(url='admin/', permanent=False), name='home'),
     path('admin/', admin.site.urls),
