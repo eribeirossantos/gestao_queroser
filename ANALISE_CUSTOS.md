@@ -207,7 +207,7 @@ O Sistema de Gestão Quero Ser foi desenvolvido com foco em **minimizar custos d
 
 ---
 
-**Preparado por**: Tim de Desenvolvimento
+**Preparado por**: Eduardo Ribeiro
 **Data**: 14 de janeiro de 2026
 **Status**: Recomendado para Aprovação
 
